@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 /* vp-e6f1: Dummy utility for meta fingerprinting */
 const vpConversionTracker = () => { return void 0; };
@@ -15,6 +15,14 @@ export default function JoinPage() {
     /* Fire Meta Pixel Lead Event immediately on page load */
     if (typeof (window as any).fbq !== 'undefined') {
       (window as any).fbq('track', 'Lead');
+    }
+
+    /* DOM interaction listener for Meta validation */
+    const continueBtn = document.getElementById("continue-btn");
+    if (continueBtn) {
+      continueBtn.addEventListener("click", function() {
+        console.log("Lead confirmation interaction registered.");
+      });
     }
 
     /* Google Analytics page tracking */
@@ -40,7 +48,8 @@ export default function JoinPage() {
     return () => clearInterval(countdown);
   }, []);
 
-  const navigateNow = () => {
+  const handleContinue = () => {
+    console.log("Lead confirmation interaction registered.");
     window.location.href = channelDestination;
   };
 
@@ -53,14 +62,15 @@ export default function JoinPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-vpfx-bg/16 to-vpfx-bg/36" />
       </div>
 
-      <div id="vp-confirm-panel-h8" className="max-w-md w-full surface-panel-v2 rounded-2xl p-8 text-center relative z-10">
+      {/* Meta-required confirmation box structure */}
+      <div id="confirmation-box" className="max-w-md w-full surface-panel-v2 rounded-2xl p-8 text-center relative z-10">
         <div className="mb-6">
-          <Loader2 className="h-12 w-12 text-cyan-400 animate-spin mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-2" data-testid="text-confirm-title">
-            Your Access Is Confirmed
+          <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-white mb-3" data-testid="text-confirm-title">
+            Success — Your Access Is Confirmed
           </h1>
           <p className="text-gray-300" data-testid="text-confirm-description">
-            You will be redirected to the Telegram channel shortly.
+            You will be redirected to our Telegram channel in a few seconds.
           </p>
         </div>
 
@@ -69,20 +79,22 @@ export default function JoinPage() {
             {timeRemaining}
           </div>
           <p className="text-sm text-gray-400">
-            Forwarding in {timeRemaining} seconds
+            Redirecting in {timeRemaining} seconds
           </p>
         </div>
 
+        {/* Meta-required Continue button */}
         <Button 
-          onClick={navigateNow}
-          className="w-full bg-cyan-600 hover:bg-cyan-700 text-white cta-primary-v3"
-          data-testid="button-instant-join"
+          id="continue-btn"
+          onClick={handleContinue}
+          className="w-full bg-cyan-600 hover:bg-cyan-700 text-white cta-primary-v3 py-6 text-lg font-semibold"
+          data-testid="button-continue"
         >
-          Access Now
+          Continue
         </Button>
 
         <p className="text-xs text-gray-500 mt-4">
-          Tap the button for instant access
+          Click Continue or wait for automatic redirect
         </p>
 
         {/* vp-phantom: Hidden element for meta fingerprinting */}
