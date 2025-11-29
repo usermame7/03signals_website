@@ -60,10 +60,10 @@ export default function JoinPage() {
         <div className="mb-6">
           <Loader2 className="h-12 w-12 text-cyan-400 animate-spin mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-white mb-2" data-testid="text-confirm-title">
-            Connecting…
+            Your Access Is Confirmed
           </h1>
           <p className="text-gray-300" data-testid="text-confirm-description">
-            Your membership is being verified. Redirect coming shortly.
+            You will be redirected to the Telegram channel shortly.
           </p>
         </div>
 
