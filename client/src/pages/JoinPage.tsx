@@ -14,10 +14,7 @@ export default function JoinPage() {
 
     /* Fire Meta Pixel Lead Event immediately on page load */
     if (typeof (window as any).fbq !== 'undefined') {
-      (window as any).fbq('track', 'Lead', {
-        value: 0.00,
-        currency: 'USD'
-      });
+      (window as any).fbq('track', 'Lead');
     }
 
     /* Google Analytics page tracking */
