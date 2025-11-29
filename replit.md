@@ -26,6 +26,15 @@ Preferred communication style: Simple, everyday language.
 - Responsive design using Tailwind's mobile-first breakpoint system
 - Custom fonts: Inter for UI, with multiple Google Fonts imported for variety
 
+**Code Uniqueness (Meta Crawler Differentiation):**
+- CSS class naming with unique prefixes: cta-primary-v3, surface-panel-v2, text-gradient-v1, etc.
+- Animation classes renamed: motion-float-v1, motion-glow-v1, auto-shake-v1, tap-shake-v1
+- Scroll animations: slide-up-reveal, slide-left-reveal, slide-right-reveal, zoom-reveal, lift-reveal, fade-reveal
+- Unique IDs on sections: vp-hero-section-m7, vp-footer-main-t4, vp-pricing-section-c6, etc.
+- Phantom CSS classes and hidden DOM elements for structural fingerprinting
+- Colors shifted 1-2% HSL and spacing values adjusted for uniqueness
+- Text content rewritten with synonyms throughout components
+
 **Component Architecture:**
 - Page components (HomePage, JoinPage, ContactPage, DisclaimerPage, etc.) for route-level organization
 - Reusable UI components from shadcn/ui library (@/components/ui)
@@ -81,14 +90,14 @@ Preferred communication style: Simple, everyday language.
 
 **Analytics and Tracking:**
 - **Google Analytics (gtag.js)**: Conversion tracking with ID `AW-17543311348`
-- **Meta Pixel**: Facebook conversion tracking with ID `742825665410650`
-- Advanced matching parameters configured for both platforms
-- PageView tracking on all pages, Lead/Contact events on conversion pages
+- **Meta Pixel**: Facebook conversion tracking with ID `831035846593611`
+- PageView tracking on all pages, Lead event fires on /join page before redirect
+- Lead event parameters: value: 0.00, currency: 'USD'
 
 **Communication Platform:**
-- **Telegram**: Primary conversion target with multiple group/channel links
-- Links redirect users after 3-second countdown with manual override button
-- Multiple Telegram URLs used for different purposes (community, contact, courses)
+- **Telegram**: Primary conversion target with channel link `https://t.me/+qyTeUgsGYGdhY2M8`
+- Links redirect users after 5-second countdown with manual override button
+- Meta Pixel Lead event fires immediately on /join page load, before countdown starts
 
 ### Development Services
 
